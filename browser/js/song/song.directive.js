@@ -4,12 +4,15 @@ juke.directive('songList',function(PlayerFactory) {
 		restrict: 'E',
 		templateUrl: '/js/song/templates/songs.html',
 		scope: {
+			playlist: '=',
 			songs: '='	
 		},
 		link: function(scope) {
 			scope.getCurrentSong = function () {
 			    return PlayerFactory.getCurrentSong();
 			  };
+
+			scope.foo="bar";
 
 			scope.isPlaying = function (song) {
 			    return PlayerFactory.isPlaying() && PlayerFactory.getCurrentSong() === song;

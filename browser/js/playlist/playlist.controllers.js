@@ -44,6 +44,15 @@ juke.controller('PlaylistCtrl', function ($scope, thePlaylist, PlaylistFactory, 
     });
   };
 
+  // $scope.removeSong = PlaylistFactory.removeSong;
+  $scope.removeSong = function (song) {
+    return PlaylistFactory.removeSong($scope.playlist._id, song)
+    .then(function (removedSong) {
+      $scope.playlist.songs.splice($scope.playlist.songs.indexOf(removedSong),1);
+      return removedSong;
+    });
+  };
+
   // $scope.toggle = function (song) {
   //   if (song !== PlayerFactory.getCurrentSong()) {
   //     PlayerFactory.start(song, $scope.playlist.songs);

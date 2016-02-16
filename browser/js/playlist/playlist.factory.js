@@ -44,6 +44,14 @@ juke.factory('PlaylistFactory', function ($http, SongFactory) {
     .then(SongFactory.convert);
   };
 
+  PlaylistFactory.removeSong = function (id, song) {
+  return $http.delete('/api/playlists/' + id + '/songs', song._id)
+  .then(function (response) {
+    console.log("deleted song. response status:", response.status);
+    return response.status;
+    });
+  };
+
   return PlaylistFactory;
 
 });

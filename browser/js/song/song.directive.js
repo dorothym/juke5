@@ -25,8 +25,26 @@ juke.directive('songList',function(PlayerFactory) {
 		      	PlayerFactory.resume();
 		    }
 		  };
+
+  			scope.start = PlayerFactory.start;
 			
 		}
+	};
+
+});
+
+juke.directive('doubleClick',function(PlayerFactory) {
+	console.log("inside doubleClick directive");
+	return {
+		restrict: 'A',
+        scope: {
+            doubleClick: '&'
+        },
+		link: function(scope, element) {
+			element.on('dblclick', function() {
+				scope.doubleClick();
+			});
+		  }	
 	};
 
 });

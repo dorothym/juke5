@@ -8,6 +8,7 @@ juke.config(function ($stateProvider) {
     controller: 'AlbumsCtrl',
     resolve: {
       allAlbums: function (AlbumFactory) {
+        console.log("all Albums resolve");
         return AlbumFactory.fetchAll();
       }
     }

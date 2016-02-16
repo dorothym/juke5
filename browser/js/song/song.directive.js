@@ -1,0 +1,32 @@
+juke.directive('songList',function(PlayerFactory) {
+	console.log("my favorite song directive");
+	return {
+		restrict: 'E',
+		templateUrl: '/js/song/templates/songs.html',
+		scope: {
+			songs: '='	
+		},
+		link: function(scope) {
+			scope.getCurrentSong = function () {
+			    return PlayerFactory.getCurrentSong();
+			  };
+
+			scope.isPlaying = function (song) {
+			    return PlayerFactory.isPlaying() && PlayerFactory.getCurrentSong() === song;
+			};
+
+		  	scope.toggle = function (song) {
+		    	if (song !== PlayerFactory.getCurrentSong()) {
+		    	// variables need to match the directive's scope!! (scope.songs, not scope.artist.songs)
+		      	PlayerFactory.start(song, scope.songs);
+		    } else if ( PlayerFactory.isPlaying() ) {
+		      	PlayerFactory.pause();
+		    } else {
+		      	PlayerFactory.resume();
+		    }
+		  };
+			
+		}
+	};
+
+});
